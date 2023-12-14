@@ -8,13 +8,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.annotation.*;
+import pl.put.poznan.json.logic.JsonTools;
+
 import java.util.Arrays;
 
+/**
+ * REST controller class, manages paths and requests
+ */
 @RestController
 @RequestMapping("/api")
 public class JsonToolsController {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonToolsController.class);
+
+    private final JsonTools jsonTool = new JsonTools();
 
     @ExceptionHandler
     public ResponseEntity<Object> handle(HttpMessageConversionException e) {
@@ -23,14 +30,12 @@ public class JsonToolsController {
 
     @RequestMapping(path = "/minify", method = RequestMethod.GET, produces = "application/json")
     public JsonNode minify(@RequestBody JsonNode json) {
-        logger.debug(json.toPrettyString());
-        return new ObjectMapper().valueToTree("Unimplemented");
+        return jsonTool.minify(json);
     }
 
     @RequestMapping(path = "/format", method = RequestMethod.GET, produces = "application/json")
     public JsonNode format(@RequestBody JsonNode json) {
-        logger.debug(json.toPrettyString());
-        return new ObjectMapper().valueToTree("Unimplemented");
+        return jsonTool.format(json);
     }
 
     @RequestMapping(path = "/filterout", method = RequestMethod.GET, produces = "application/json")

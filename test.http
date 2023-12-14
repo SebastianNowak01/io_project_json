@@ -1,2 +1,5 @@
-GET http://localhost:8080/lorempisum
+GET http://localhost:8080/api/format
 Content-Type: application/json
+{
+"key" : "value"
+}
