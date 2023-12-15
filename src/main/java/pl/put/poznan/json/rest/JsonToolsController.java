@@ -40,9 +40,7 @@ public class JsonToolsController {
 
     @RequestMapping(path = "/filterout", method = RequestMethod.GET, produces = "application/json")
     public JsonNode filterOut(@RequestBody JsonNode json, @RequestParam String[] filterout) {
-        logger.debug(json.toPrettyString());
-        logger.debug(Arrays.toString(filterout));
-        return new ObjectMapper().valueToTree("Unimplemented");
+        return jsonTool.filterOut(json, filterout);
     }
 
     @RequestMapping(path = "/retain", method = RequestMethod.GET, produces = "application/json")

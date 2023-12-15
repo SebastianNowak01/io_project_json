@@ -1,6 +1,7 @@
 package pl.put.poznan.json.logic;
 
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,6 +34,24 @@ public class JsonTools {
     public JsonNode format(JsonNode json) {
         String jsonFormat = json.toPrettyString();
         logger.info("Send formatted JSON" + "\n" + jsonFormat);
+        return new ObjectMapper().valueToTree(jsonFormat);
+    }
+  
+    /**
+     * Return filtered JSON back to client
+     * @param json JSON received from client
+     * @param filterout Array of key names to be removed from the JSON
+     * @return JsonNode representing the filtered JSON
+     */
+    public JsonNode filterOut(JsonNode json, String[] filterout) {
+        ObjectNode filtered = ((ObjectNode) json).deepCopy();
+	
+        for (String key: filterout) {
+	  filtered.remove(key);
+        }
+
+	String jsonFormat = filtered.toString();
+        logger.info("Send filtered JSON:\n" + jsonFormat);
         return new ObjectMapper().valueToTree(jsonFormat);
     }
 }
