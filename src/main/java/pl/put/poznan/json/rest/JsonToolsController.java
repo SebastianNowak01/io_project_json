@@ -45,9 +45,7 @@ public class JsonToolsController {
 
     @RequestMapping(path = "/retain", method = RequestMethod.GET, produces = "application/json")
     public JsonNode retain(@RequestBody JsonNode json, @RequestParam String[] retain) {
-        logger.debug(json.toPrettyString());
-        logger.debug(Arrays.toString(retain));
-        return new ObjectMapper().valueToTree("Unimplemented");
+        return jsonTool.retain(json, retain);
     }
 
     @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "application/json")

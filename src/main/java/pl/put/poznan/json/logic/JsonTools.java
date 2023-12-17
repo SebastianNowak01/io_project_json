@@ -54,4 +54,24 @@ public class JsonTools {
         logger.info("Send filtered JSON:\n" + jsonFormat);
         return new ObjectMapper().valueToTree(jsonFormat);
     }
+
+    /**
+     * Return filtered JSON back to client. Only provided key names are preserved
+     * @param json JSON received from client
+     * @param retain Array of key names to be retained in the JSON
+     * @return JsonNode representing the filtered JSON
+     */
+    public JsonNode retain(JsonNode json, String[] retain) {
+        ObjectNode retained = new ObjectMapper().createObjectNode();
+
+	logger.info("log1 <<<<<<<<<<<<<<<<<<<,");
+        for (String key: retain) {
+	  if (json.get(key) != null)
+	    retained.put(key, json.get(key));
+	}
+
+	String jsonFormat = retained.toString();
+        logger.info("Send retained JSON:\n" + jsonFormat);
+        return new ObjectMapper().valueToTree(jsonFormat);
+    }
 }
