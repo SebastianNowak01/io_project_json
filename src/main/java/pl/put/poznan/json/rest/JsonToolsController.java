@@ -19,11 +19,21 @@ public class JsonToolsController {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonToolsController.class);
 
+    /**
+     * Handles improper requests
+     * @param e Exception
+     * @return
+     */
     @ExceptionHandler
     public ResponseEntity<Object> handle(HttpMessageConversionException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
     }
 
+    /**
+     * Endpoint for minifying JSON received from client
+     * @param json JSON received from client
+     * @return String representing JSON
+     */
     @RequestMapping(path = "/minify", method = RequestMethod.GET, produces = "text/plain")
     public String minify(@RequestBody JsonNode json) {
         var base = new BaseJsonDecorator(json);
@@ -31,6 +41,11 @@ public class JsonToolsController {
         return minifier.transform();
     }
 
+    /**
+     * Endpoint for formatting JSON received from client
+     * @param json JSON received from client
+     * @return String representing JSON
+     */
     @RequestMapping(path = "/format", method = RequestMethod.GET, produces = "text/plain")
     public String format(@RequestBody JsonNode json) {
         var base = new BaseJsonDecorator(json);
@@ -38,6 +53,13 @@ public class JsonToolsController {
         return formatter.transform();
     }
 
+    /**
+     * Endpoint for removing keys from JSON received from client
+     * @param json JSON received from client
+     * @param keys Array String of keys to retain in JSON object
+     * @return String representing JSON
+     * @throws ParseException
+     */
     @RequestMapping(path = "/remove", method = RequestMethod.GET, produces = "application/json")
     public String filterOut(@RequestBody JsonNode json, @RequestParam String[] keys) throws ParseException {
         var base = new BaseJsonDecorator(json);
@@ -45,6 +67,12 @@ public class JsonToolsController {
         return filter.transform();
     }
 
+    /**
+     * Endpoint for retaining keys in JSON received from client
+     * @param json JSON received from client
+     * @param keys Array String of keys to retain in JSON object
+     * @return String representing JSON
+     */
     @RequestMapping(path = "/retain", method = RequestMethod.GET, produces = "application/json")
     public String retain(@RequestBody JsonNode json, @RequestParam String[] keys) {
         var base = new BaseJsonDecorator(json);
@@ -52,6 +80,11 @@ public class JsonToolsController {
         return retainer.transform();
     }
 
+    /**
+     *  Endpoint for performing diff on two Json objects
+     * @param json
+     * @return
+     */
     @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "application/json")
     public String diff(@RequestBody JsonNode json) {
         // Probably just assume the body has two json objects, get them, else throw
