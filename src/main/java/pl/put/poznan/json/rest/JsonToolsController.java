@@ -1,7 +1,7 @@
 package pl.put.poznan.json.rest;
 
 import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.apache.tomcat.util.json.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -9,8 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageConversionException;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.json.logic.*;
-
-import java.util.Arrays;
 
 /**
  * REST controller class, manages paths and requests
@@ -21,51 +19,37 @@ public class JsonToolsController {
 
     private static final Logger logger = LoggerFactory.getLogger(JsonToolsController.class);
 
-    private final JsonTools jsonTool = new JsonTools();
-
     @ExceptionHandler
     public ResponseEntity<Object> handle(HttpMessageConversionException e) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getLocalizedMessage());
     }
 
-//    @RequestMapping(path = "/minify", method = RequestMethod.GET, produces = "application/json")
-//    public JsonNode minify(@RequestBody JsonNode json) {
-//        return jsonTool.minify(json);
-//    }
-
-    @RequestMapping(path = "/minify", method = RequestMethod.GET, produces = "application/json")
-    public JsonNode minify(@RequestBody JsonNode json) {
-        return new JsonMinifier().format(json);
+    @RequestMapping(path = "/minify", method = RequestMethod.GET, produces = "text/plain")
+    public String minify(@RequestBody JsonNode json) {
+        var base = new BaseJsonDecorator(json);
+        var minifier = new JsonMinifyDecorator(base);
+        return minifier.transform();
     }
 
-//    @RequestMapping(path = "/format", method = RequestMethod.GET, produces = "application/json")
-//    public JsonNode format(@RequestBody JsonNode json) {
-//        return jsonTool.format(json);
-//    }
-
-    @RequestMapping(path = "/format", method = RequestMethod.GET, produces = "application/json")
-    public JsonNode format(@RequestBody JsonNode json) {
-        return new JsonFormater().format(json);
+    @RequestMapping(path = "/format", method = RequestMethod.GET, produces = "text/plain")
+    public String format(@RequestBody JsonNode json) {
+        var base = new BaseJsonDecorator(json);
+        var formatter = new JsonFormatterDecorator(base);
+        return formatter.transform();
     }
 
-//    @RequestMapping(path = "/filterout", method = RequestMethod.GET, produces = "application/json")
-//    public JsonNode filterOut(@RequestBody JsonNode json, @RequestParam String[] filterout) {
-//        return jsonTool.filterOut(json, filterout);
-//    }
-
-    @RequestMapping(path = "/filterout", method = RequestMethod.GET, produces = "application/json")
-    public JsonNode filterOut(@RequestBody JsonNode json, @RequestParam String[] filterout) {
-        return new JsonKeyRemover(filterout).format(json);
+    @RequestMapping(path = "/remove", method = RequestMethod.GET, produces = "application/json")
+    public String filterOut(@RequestBody JsonNode json, @RequestParam String[] keys) throws ParseException {
+        var base = new BaseJsonDecorator(json);
+        var filter = new JsonRemoveDecorator(base, keys);
+        return filter.transform();
     }
-
-//    @RequestMapping(path = "/retain", method = RequestMethod.GET, produces = "application/json")
-//    public JsonNode retain(@RequestBody JsonNode json, @RequestParam String[] retain) {
-//        return jsonTool.retain(json, retain);
-//    }
 
     @RequestMapping(path = "/retain", method = RequestMethod.GET, produces = "application/json")
-    public JsonNode retain(@RequestBody JsonNode json, @RequestParam String[] retain) {
-        return new JsonRetainer(retain).format(json);
+    public String retain(@RequestBody JsonNode json, @RequestParam String[] keys) {
+        var base = new BaseJsonDecorator(json);
+        var retainer = new JsonRetainDecorator(base, keys);
+        return retainer.transform();
     }
 
     @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "application/json")

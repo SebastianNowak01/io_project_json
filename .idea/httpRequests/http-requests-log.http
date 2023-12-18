@@ -1,3 +1,415 @@
+GET http://localhost:8080/api/diff
+Content-Type: application/json
+Content-Length: 159
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "a" : {
+    "key1" : "valueX",
+    "key2" : 42,
+    "key3" : [12,13,18]
+  },
+  "b" : {
+    "key1" : "value",
+    "key2" : 42,
+    "key3" : [12,13,14]
+  }
+}
+
+<> 2023-12-18T124625.200.json
+
+###
+
+GET http://localhost:8080/api/remove?keys=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T124522.200.json
+
+###
+
+GET http://localhost:8080/api/retain?keys=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T124516.200.json
+
+###
+
+GET http://localhost:8080/api/retain?keys=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T124152.200.json
+
+###
+
+GET http://localhost:8080/api/retain?keys=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T123931.200.json
+
+###
+
+GET http://localhost:8080/api/retain?keys=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T123919.400.json
+
+###
+
+GET http://localhost:8080/api/retain?toRetain=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T123836.200.json
+
+###
+
+GET http://localhost:8080/api/retain?toRetain=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T123832.200.json
+
+###
+
+GET http://localhost:8080/api/remove?toRemove=key1,key3
+Content-Type: application/json
+Content-Length: 60
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T123814.200.json
+
+###
+
+GET http://localhost:8080/api/remove?toRemove=key1,key3
+Content-Type: application/json
+Content-Length: 59
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+<> 2023-12-18T123808.200.json
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+
+         "key" : "value", "sda" : 1234, "1231312" : [1,2]
+}
+
+<> 2023-12-18T123704.200.txt
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+
+         "key" : "value", "sda" : 1234, "1231312" : [1,2]
+}
+
+<> 2023-12-18T123703.200.txt
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+
+         "key" : "value", "sda" : 1234, "1231312" : [1,2]
+}
+
+<> 2023-12-18T123634.200.json
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+Content-Length: 63
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+
+
+         "key" : "value", "sda" : 1234, "1231312" : [1,2]
+}
+
+<> 2023-12-18T123633.200.json
+
+###
+
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+<> 2023-12-18T123527.200.txt
+
+###
+
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+<> 2023-12-18T123526.200.txt
+
+###
+
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+<> 2023-12-18T123524.200.txt
+
+###
+
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+<> 2023-12-18T123442.200.json
+
+###
+
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+<> 2023-12-18T123441.200.json
+
+###
+
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+Content-Length: 66
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+<> 2023-12-18T123439.200.json
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+Content-Length: 19
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+{
+"key" : "value"
+}
+
+<> 2023-12-18T123350.200.json
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+{:
+"key" : "value"
+}:
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-12-18T123339.400.html
+
+###
+
+GET http://localhost:8080/api/format
+Content-Type: application/json
+{:
+"key" : "value"
+}:
+Connection: Keep-Alive
+User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.8.1)
+Accept-Encoding: br,deflate,gzip,x-gzip
+
+<> 2023-12-18T123334.400.html
+
+###
+
 GET http://localhost:8080/api/format
 Content-Type: application/json
 Content-Length: 18
@@ -375,25 +787,6 @@ User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
 Accept-Encoding: br,deflate,gzip,x-gzip
 
 <> 2023-12-17T175527.400.html
-
-###
-
-GET http://localhost:8080/api/minify
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-12-17T175343.400.txt
-
-###
-
-GET http://localhost:8080/api/minify
-AjasjanckjdszADFNJJ:
-Connection: Keep-Alive
-User-Agent: Apache-HttpClient/4.5.14 (Java/17.0.9)
-Accept-Encoding: br,deflate,gzip,x-gzip
-
-<> 2023-12-17T175155.400.txt
 
 ###
 

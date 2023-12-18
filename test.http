@@ -1,5 +1,63 @@
+GET http://localhost:8080/api/minify
+Content-Type: application/json
+
+{
+  "key" : "value",
+  "arr" : [
+    1,
+    2,
+    3,
+    44
+  ]
+}
+
+###
+
 GET http://localhost:8080/api/format
 Content-Type: application/json
+
 {
-"key" : "value"
+
+
+         "key" : "value", "sda" : 1234, "1231312" : [1,2]
+}
+
+###
+
+GET http://localhost:8080/api/remove?keys=key1,key3
+Content-Type: application/json
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+###
+
+GET http://localhost:8080/api/retain?keys=key1,key3
+Content-Type: application/json
+
+{
+  "key1" : "value",
+  "key2" : 42,
+  "key3" : [12,13,14]
+}
+
+###
+
+GET http://localhost:8080/api/diff
+Content-Type: application/json
+
+{
+  "a" : {
+    "key1" : "valueX",
+    "key2" : 42,
+    "key3" : [12,13,18]
+  },
+  "b" : {
+    "key1" : "value",
+    "key2" : 42,
+    "key3" : [12,13,14]
+  }
 }
