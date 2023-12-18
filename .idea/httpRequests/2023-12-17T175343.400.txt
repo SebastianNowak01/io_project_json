@@ -1,0 +1,1 @@
+Required request body is missing: public com.fasterxml.jackson.databind.JsonNode pl.put.poznan.json.rest.JsonToolsController.minify(com.fasterxml.jackson.databind.JsonNode)
