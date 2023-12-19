@@ -85,7 +85,7 @@ public class JsonToolsController {
      * @param json
      * @return
      */
-    @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "text/plain")
     public String diff(@RequestBody JsonNode json) {
         var base = new BaseJsonDecorator(json);
         var diff = new JsonDiffDecorator(base);
