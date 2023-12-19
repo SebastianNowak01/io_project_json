@@ -22,7 +22,7 @@ public class JsonToolsController {
     /**
      * Handles improper requests
      * @param e Exception
-     * @return ResponseEntity<Object> an error response
+     * @return an error response
      */
     @ExceptionHandler
     public ResponseEntity<Object> handle(HttpMessageConversionException e) {
