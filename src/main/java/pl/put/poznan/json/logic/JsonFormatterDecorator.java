@@ -8,7 +8,6 @@ public class JsonFormatterDecorator extends BaseJsonDecorator {
     /**
      * Return formatted JSON back to client
      *
-     * @param json JSON received from client
      * @return JsonNode representing formatted JSON
      */
     @Override

@@ -77,10 +77,11 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.1.1</version>
+                <version>3.6.3</version>
                 <configuration>
-                    <show>private</show>
-                    <nohelp>true</nohelp>
+                    <reportOutputDirectory>${project.reporting.outputDirectory}/doc</reportOutputDirectory>
+                    <destDir>doc</destDir>
+
                 </configuration>
             </plugin>
             <plugin>
