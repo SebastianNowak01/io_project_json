@@ -44,7 +44,7 @@ public class JsonDiffDecorator extends BaseJsonDecorator {
 	    diff += "< " + aLines[i] + "\n";
 	    continue;
 	  }
-	  if (aLines[i] != bLines[i]) {
+	  if (!(aLines[i].equals(bLines[i]))) {
 	    diff += "< " + aLines[i] + "\n";
 	    diff += "> " + bLines[i] + "\n";
 	    continue;
