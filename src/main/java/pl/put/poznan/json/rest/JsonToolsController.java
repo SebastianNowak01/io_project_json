@@ -85,10 +85,10 @@ public class JsonToolsController {
      * @param json
      * @return
      */
-    @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "application/json")
+    @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "text/plain")
     public String diff(@RequestBody JsonNode json) {
-        // Probably just assume the body has two json objects, get them, else throw
-        logger.debug(json.toPrettyString());
-        return "Unimplemented";
+        var base = new BaseJsonDecorator(json);
+        var diff = new JsonDiffDecorator(base);
+        return diff.transform();
     }
 }
