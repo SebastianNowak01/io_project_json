@@ -11,8 +11,6 @@ import java.util.List;
 public class JsonDiffDecorator extends BaseJsonDecorator {
     /**
      * Creates object JsonKeyRemover
-     *
-     * @param toRetain Array of key names to be removed from the JSON
      */
     public JsonDiffDecorator(IJsonTool base) {
         super(base.get());

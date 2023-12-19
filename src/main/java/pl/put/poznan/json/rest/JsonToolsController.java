@@ -22,7 +22,7 @@ public class JsonToolsController {
     /**
      * Handles improper requests
      * @param e Exception
-     * @return
+     * @return ResponseEntity<Object> an error response
      */
     @ExceptionHandler
     public ResponseEntity<Object> handle(HttpMessageConversionException e) {
@@ -58,10 +58,9 @@ public class JsonToolsController {
      * @param json JSON received from client
      * @param keys Array String of keys to retain in JSON object
      * @return String representing JSON
-     * @throws ParseException
      */
     @RequestMapping(path = "/remove", method = RequestMethod.GET, produces = "application/json")
-    public String filterOut(@RequestBody JsonNode json, @RequestParam String[] keys) throws ParseException {
+    public String filterOut(@RequestBody JsonNode json, @RequestParam String[] keys) {
         var base = new BaseJsonDecorator(json);
         var filter = new JsonRemoveDecorator(base, keys);
         return filter.transform();
@@ -82,8 +81,8 @@ public class JsonToolsController {
 
     /**
      *  Endpoint for performing diff on two Json objects
-     * @param json
-     * @return
+     * @param json an input JSON object with two keys: "a" and "b"
+     * @return String a diff of two JSON objects
      */
     @RequestMapping(path = "/diff", method = RequestMethod.GET, produces = "text/plain")
     public String diff(@RequestBody JsonNode json) {
