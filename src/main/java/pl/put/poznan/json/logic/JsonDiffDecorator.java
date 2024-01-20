@@ -32,6 +32,8 @@ public class JsonDiffDecorator extends BaseJsonDecorator {
         String a = aNode.toPrettyString();
         String b = bNode.toPrettyString();
 
+        System.out.println(a);
+
         String[] aLines = a.split("\n");
         String[] bLines = b.split("\n");
 
